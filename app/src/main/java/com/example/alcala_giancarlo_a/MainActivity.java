@@ -37,25 +37,26 @@ public class MainActivity extends AppCompatActivity {
         es1BtnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String task1 = "task : ";
-               String task2 = "Saving Data ";
-               String Location1 = "location : ";
-               String Location2 = "External Storage";
+                String task1 = "task : ";
+                String task2 = "Saving Data ";
+                String Location1 = "location : ";
+                String Location2 = "External Storage";
 
-               String details1 = task1 + " "  + task2;
-               String details2 = Location1 + " "  + Location2;
+                String details1 = task1 + " " + task2;
+                String details2 = Location1 + " " + Location2;
 
-               FileOutputStream fos = null;
-               try {
-                    fos = openFileOutput("SD_InternalStorage", Context.MODE_PRIVATE);
+                FileOutputStream fos = null;
+                try {
+                    File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                    File file = new File(folder, "NameExternal.txt");
+                    fos = new FileOutputStream(file);
                     fos.write(details1.getBytes());
                     fos.write(details2.getBytes());
-               } catch (FileNotFoundException e) {
-                   e.printStackTrace();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
 
+                } catch (IOException e) {
+                }
+            }
+        });
     }
 
 
