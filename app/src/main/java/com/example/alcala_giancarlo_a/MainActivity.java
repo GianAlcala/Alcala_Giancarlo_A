@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -88,6 +90,20 @@ public class MainActivity extends AppCompatActivity {
                     fos.write(details1.getBytes());
                     fos.write(details2.getBytes());
                 } catch (IOException e){}
+            }
+        });
+
+        Button sp2BtnCall = (Button)findViewById(R.id.SP2); //button listener
+        sp2BtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sp = getSharedPreferences("User Preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("Task", "Saving Data");
+                edit.putString("Location", "SharedPreferences");
+
+                TextView TextDisplay = findViewById(R.id.TextDisplay);
+                TextDisplay.setText("Task: Saving Data");
             }
         });
     }
