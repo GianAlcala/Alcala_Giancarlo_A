@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +32,30 @@ public class MainActivity extends AppCompatActivity {
                 edit.putString("Location", "SharedPreferences");
             }
         });
+
+        Button es1BtnCall = (Button)findViewById(R.id.ES1); //button listener
+        es1BtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               String task1 = "task : ";
+               String task2 = "Saving Data ";
+               String Location1 = "location : ";
+               String Location2 = "External Storage";
+
+               String details1 = task1 + " "  + task2;
+               String details2 = Location1 + " "  + Location2;
+
+               FileOutputStream fos = null;
+               try {
+                    fos = openFileOutput("SD_InternalStorage", Context.MODE_PRIVATE);
+                    fos.write(details1.getBytes());
+                    fos.write(details2.getBytes());
+               } catch (FileNotFoundException e) {
+                   e.printStackTrace();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+
     }
 
 
