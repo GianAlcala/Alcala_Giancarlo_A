@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button sp1BtnCall = (Button)findViewById(R.id.SP1); //button listener
+        Button sp1BtnCall = (Button) findViewById(R.id.SP1); //button listener
         sp1BtnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button es1BtnCall = (Button)findViewById(R.id.ES1); //button listener
+        Button es1BtnCall = (Button) findViewById(R.id.ES1); //button listener
         es1BtnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button is2BtnCall = (Button)findViewById(R.id.IS2); //button listener
+        Button is2BtnCall = (Button) findViewById(R.id.IS2); //button listener
         is2BtnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,11 +89,12 @@ public class MainActivity extends AppCompatActivity {
                     fos = new FileOutputStream(file);
                     fos.write(details1.getBytes());
                     fos.write(details2.getBytes());
-                } catch (IOException e){}
+                } catch (IOException e) {
+                }
             }
         });
 
-        Button sp2BtnCall = (Button)findViewById(R.id.SP2); //button listener
+        Button sp2BtnCall = (Button) findViewById(R.id.SP2); //button listener
         sp2BtnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +105,35 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView TextDisplay = findViewById(R.id.TextDisplay);
                 TextDisplay.setText("Task: Saving Data");
+            }
+        });
+
+        Button is3BtnCall = (Button) findViewById(R.id.IS3); //button listener
+        is3BtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String task1 = "task : ";
+                String task2 = "Saving Data ";
+                String Location1 = "location : ";
+                String Location2 = "Internal Storage";
+
+                String details1 = task1 + " " + task2;
+                String details2 = Location1 + " " + Location2;
+
+                FileOutputStream fos = null;
+                try {
+                    fos = openFileOutput("SD_InternalStorage", Context.MODE_PRIVATE);
+                    fos.write(details1.getBytes());
+                    fos.write(details2.getBytes());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                TextView TextDisplay = findViewById(R.id.TextDisplay);
+                TextDisplay.setText(details1);
+                TextDisplay.setText(details2);
             }
         });
     }
