@@ -57,10 +57,38 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button is2BtnCall = (Button)findViewById(R.id.IS2); //button listener
+        is2BtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String task1 = "task : ";
+                String task2 = "Saving Data ";
+                String Location1 = "location : ";
+                String Location2 = "Internal Storage";
+
+                String details1 = task1 + " " + task2;
+                String details2 = Location1 + " " + Location2;
+
+                FileOutputStream fos = null;
+                try {
+                    fos = openFileOutput("SD_InternalStorage", Context.MODE_PRIVATE);
+                    fos.write(details1.getBytes());
+                    fos.write(details2.getBytes());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    File folder = getExternalCacheDir();
+                    File file = new File(folder, "ExternalCache.txt");
+                    fos = new FileOutputStream(file);
+                    fos.write(details1.getBytes());
+                    fos.write(details2.getBytes());
+                } catch (IOException e){}
+            }
+        });
     }
-
-
-
-
-
 }
